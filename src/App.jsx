@@ -1,5 +1,6 @@
 import "./App.css";
-import ExpenseItem from "./Components/ExpenseItem.jsx";
+// import "./ExpenseItem.css";
+import ExpenseItem from "./Components/Expense/ExpenseItem.jsx";
 const expenses = [
   {
     id: 1,
@@ -141,12 +142,14 @@ const expenses = [
     date: new Date(),
     location: "Tech Store",
   },
-  // Add more items as needed...
 ];
 
-export default function App() {
-  return <ExpenseItem title={expenses} />;
-}
+const App = () => {
+  return (
+    <div className="expense">
+      <ExpenseItem title={expenses} />
+    </div>
+  );
+};
 
-
-
+export default App;
