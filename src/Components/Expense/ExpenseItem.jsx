@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ExpenseDate from "./ExpenseDate";
 import ExpenseDetails from "./ExpenseDetails";
 
