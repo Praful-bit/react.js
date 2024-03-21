@@ -98,3 +98,14 @@
         margin-left: 0.5rem;
         cursor: pointer;
 }
+.edit{
+    font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        background-color: #5d0016;
+        border: 1px solid white;
+        padding: 0.6rem;
+        border-radius: 12px;
+        margin-left: 0.5rem;
+        cursor: pointer;
+}
