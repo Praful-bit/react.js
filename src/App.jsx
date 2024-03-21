@@ -145,6 +145,7 @@ const expenses = [
 ];
 
 const App = () => {
+    
   return (
     <div className="expense">
       <ExpenseItem title={expenses} />
