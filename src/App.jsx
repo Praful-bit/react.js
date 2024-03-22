@@ -1,6 +1,7 @@
 import "./App.css";
 // import "./ExpenseItem.css";
 import ExpenseItem from "./Components/Expense/ExpenseItem.jsx";
+import NewExpense from "./Components/NewExpense/NewExpense.jsx";
 const expenses = [
   {
     id: 1,
@@ -145,11 +146,13 @@ const expenses = [
 ];
 
 const App = () => {
-    
   return (
-    <div className="expense">
-      <ExpenseItem title={expenses} />
-    </div>
+    <>
+      <NewExpense />
+      <div className="expense">
+        <ExpenseItem title={expenses} />
+      </div>
+    </>
   );
 };
 
