@@ -1,13 +1,16 @@
+// ExpenseItem.jsx
 /* eslint-disable react/prop-types */
 import ExpenseDate from "./ExpenseDate";
 import ExpenseDetails from "./ExpenseDetails";
 import "./ExpenseItem.css";
+import "./ExpensesList.css";
 import Card from "../UI/Card";
-import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
 import { useState } from "react";
+import ExpensesFilter from './ExpensesFilter'
 
 const ExpenseItem = (props) => {
-  const [filteredYear, setFilteredYear] = useState("2024");
+  const [filteredYear, setFilteredYear] = useState('2024');
 
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
@@ -17,7 +20,7 @@ const ExpenseItem = (props) => {
     props.onDeleteExpense(id);
   };
 
-  if (!props.expenses || !Array.isArray(props.expenses)) {
+  if (!props.expenses && !Array.isArray(props.expenses)) {
     return <p>No expenses found.</p>;
   }
 
@@ -31,11 +34,10 @@ const ExpenseItem = (props) => {
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {filteredExpenses.length === 0 ? (
-        <p>No expenses found for the selected year.</p>
-      ) : (
-        filteredExpenses.map((item) => (
-          <div key={item.id}>
+      <ExpensesList items={filteredExpenses} />
+      {filteredExpenses.map((item) => (
+        <div key={item.id}>
+          <li className="expenses-list">
             <Card className="expense-item">
               <ExpenseDate date={item.date} />
               <div className="expense-item__description">
@@ -49,9 +51,9 @@ const ExpenseItem = (props) => {
                 Delete
               </button>
             </Card>
-          </div>
-        ))
-      )}
+          </li>
+        </div>
+      ))}
     </>
   );
 };
