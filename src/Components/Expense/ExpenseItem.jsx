@@ -6,51 +6,44 @@ import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
 import { useState } from "react";
 
-
 const ExpenseItem = (props) => {
-const [filteredYear, setFilteredYear] = useState("2015");
+  const [filteredYear, setFilteredYear] = useState("2015");
 
-const filterChangeHandler = (selectedYear) => {
-  setFilteredYear(selectedYear);
-};
-
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
 
   const removeData = (id) => {
     props.onDeleteExpense(id);
   };
 
-
   if (!props.expenses || !Array.isArray(props.expenses)) {
-    return <p>No expenses found.</p>; 
+    return <p>No expenses found.</p>;
   }
 
   return (
     <>
-      {props.expenses.map((item) => {
-        return (
-          <>
-            <ExpensesFilter
-              selected={filteredYear}
-              onChangeFilter={filterChangeHandler}
-            />
-            <div key={item.id}>
-              <Card className="expense-item">
-                <ExpenseDate date={item.date} />
-                <div className="expense-item__description">
-                  <ExpenseDetails
-                    title={item.title}
-                    location={item.location}
-                    amount={item.amount}
-                  />
-                </div>
-                <button onClick={() => removeData(item.id)} className="delete">
-                  Delete
-                </button>
-              </Card>
+      <ExpensesFilter
+        selected={filteredYear}
+        onChangeFilter={filterChangeHandler}
+      />
+      {props.expenses.map((item) => (
+        <div key={item.id}>
+          <Card className="expense-item">
+            <ExpenseDate date={item.date} />
+            <div className="expense-item__description">
+              <ExpenseDetails
+                title={item.title}
+                location={item.location}
+                amount={item.amount}
+              />
             </div>
-          </>
-        );
-      })}
+            <button onClick={() => removeData(item.id)} className="delete">
+              Delete
+            </button>
+          </Card>
+        </div>
+      ))}
     </>
   );
 };
